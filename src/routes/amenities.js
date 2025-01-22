@@ -46,17 +46,21 @@ router.put('/:id', auth, async (req, res, next) => {
     try {
         const { id } = req.params;
         const { name } = req.body;
+
+        // Call the update function
         const updatedAmenity = await updateAmenity(id, { name });
 
         if (!updatedAmenity) {
-            res.status(404).json({ message: `Amenity with id ${id} was not found` })
-        } else {
-            res.status(200).json(updatedAmenity);
+            return res.status(404).json({ message: `Amenity with id ${id} was not found` });
         }
+
+        // Return the updated amenity data
+        res.status(200).json(updatedAmenity);
     } catch (error) {
         next(error);
     }
 });
+
 
 router.delete('/:id', auth, async (req, res, next) => {
     try {

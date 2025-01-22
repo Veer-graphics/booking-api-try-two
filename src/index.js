@@ -18,6 +18,7 @@ Sentry.init({
 });
 
 const app = express();
+app.use(express.json());
 
 // Sentry request handler
 app.use(Sentry.Handlers.requestHandler());

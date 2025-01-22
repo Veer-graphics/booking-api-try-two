@@ -1,7 +1,9 @@
-const getUser = async (filter) => {
+import { PrismaClient } from "@prisma/client";
+
+const getUser = async (id) => {
     const prisma = new PrismaClient();
     const user = await prisma.user.findUniqueOrThrow({
-        where: filter,
+        where: { id: id }
     });
     return user;
 };

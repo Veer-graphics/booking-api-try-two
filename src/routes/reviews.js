@@ -9,7 +9,7 @@ import deleteReview from '../services/reviews/deleteReview.js';
 
 router.get('/', async (req, res, next) => {
     try {
-        const { userId, propertyId, rating, comment } = req.body;
+        const { userId, propertyId, rating, comment } = req.query;
         const reviews = await getReviews(userId, propertyId, rating, comment);
         res.json(reviews);
     } catch (error) {
